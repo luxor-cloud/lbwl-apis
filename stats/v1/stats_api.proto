@@ -1,0 +1,62 @@
+syntax = "proto3";
+
+// TODO: add documentation
+
+service StatsService {
+    rpc GetFlashMapHighscoreForPlayer (GetFlashMapHighscoreForPlayerRequest) returns (GetFlashMapHighscoreForPlayerResponse);
+
+    rpc GetGlobalFlashMapHighscore (GetGlobalFlashMapHighscoreRequest) returns (GetGlobalFlashMapHighscoreResponse);
+
+    rpc GetTopFlashMapHighscores (GetTopFlashMapHighscoresRequest) returns (GetTopFlashMapHighscoresResponse);
+
+    rpc GetTopFlashPlayersByPoints (GetTopPlayersByPointsRequest) returns (GetTopPlayersByPointsResponse);
+
+    rpc UpdateFlashStatistics (UpdateFlashStatisticsRequests) returns (UpdateFlashStatisticsResponse);
+}
+
+message GetFlashMapHighscoreForPlayerRequest {
+    string player_id = 1;
+    string map_name = 2;
+    bool with_checkpoints = 2;
+}
+
+message GetFlashMapHighscoreForPlayerResponse {
+    FlashMapStatistic map_statistic = 1;
+}
+
+message GetGlobalFlashMapHighscoreRequest {
+    string map_name = 2;
+    bool with_checkpoints = 2;
+}
+
+message GetGlobalFlashMapHighscoreResponse {
+    string player_id = 1;
+    FlashMapStatistic map_statistic = 2;
+}
+
+message GetTopFlashMapHighscoresRequest {
+    string map_name = 1;
+    uint32 limit = 2;
+    bool with_checkpoints = 3;
+}
+
+message GetTopFlashMapHighscoresResponse {
+    repeated string players = 1;
+    repeated FlashMapStatistic map_statistic = 2;
+}
+
+message GetTopPlayersByPointsRequest {
+    unit32 limit = 1;
+}
+
+message GetTopPlayersByPointsResponse {
+    repeated string player_ids = 1;
+}
+
+message UpdateFlashStatisticsRequests {
+    repeated FlashPlayer diffs = 1;
+}
+
+message UpdateFlashStatisticsResponse {
+}
+
