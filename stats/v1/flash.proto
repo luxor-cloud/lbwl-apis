@@ -1,8 +1,8 @@
   
 syntax = "proto3";
 
-package stats.v1;
-option go_package = "v1";
+package luxor.cloud.lbwl.stats.v1;
+option go_package = "luxor.cloud/lbwl/stats/v1";
 
 message FlashPlayer {
     string player_id = 1;
